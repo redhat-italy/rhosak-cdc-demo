@@ -1,0 +1,58 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cdc-router
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"cdc-router:latest","namespace":"rh-summit-connect"},"fieldPath":"spec.template.spec.containers[?(@.name==\"container\")].image","pause":"true"}]
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cdc-router-test
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cdc-router
+    spec:
+      containers:
+        - name: container
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/rh-summit-connect/cdc-router@sha256:0e962e593e42c665148fe0cabbe38a3ad7e60674426203acf514c445a7a3e974
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: RHOAS_SERVICE_ACCOUNT_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: router-sa-credentials
+                  key: RHOAS_SERVICE_ACCOUNT_CLIENT_ID
+            - name: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: router-sa-credentials
+                  key: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET
+            - name: KAFKA_BOOTSTAP_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: rhosak-cluster-url
+                  key: bootstap-server
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

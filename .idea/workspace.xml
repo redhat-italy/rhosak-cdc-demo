@@ -5,19 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86ebf5fd-0727-4e87-957d-242ff00712df" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cdc/debezium-connect/bootstrap-confingmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/router/helm/template/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/templates/dbz-connect.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/templates/dbz-connect.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/debezium-sa.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/orderEntry/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/orderEntry/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orderEntry/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/orderEntry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/orderEntry/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/router/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/router/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/src/main/java/it/redhat/router/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/router/src/main/java/it/redhat/router/Route.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/router/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/src/main/resources/META-INF/microprofile-config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/src/main/resources/META-INF/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/resources/META-INF/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/ui/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,6 +66,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cdc/debezium-connect" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/ui/views" />
       <recent name="$PROJECT_DIR$/cdc" />

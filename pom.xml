@@ -9,7 +9,7 @@
   
   <modules>
     <module>orderEntry</module>
-    <module>router</module>
+    <module>cdc-router</module>
     <module>shipment</module>
   </modules>
 

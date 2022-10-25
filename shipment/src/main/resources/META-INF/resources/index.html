@@ -1,35 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert Movie here</title>
+    <!-- little bit of css to beutify the table -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+
+    <script type="text/javascript">
+
+$(document).ready(function () {
+    $.getJSON("http://localhost:8080/messages/list",
+    function (json) {
+        var tr;
+        for (var i = 0; i < json.length; i++) {
+            tr = $('<tr/>');
+            tr.append("<td>" + json[i].type + "</td>");
+            tr.append("<td>" + json[i].size + "</td>");
+            tr.append("<td>" + json[i].deivery + "</td>");
+            $('table').append(tr);
+        }
+    });
+});
+</script>
 </head>
+
 <body>
-<div align="center">
-    <h2>Enter Properties for Movie</h2>
-    <form method="post" action="movie/add/postParams">
-        <label>Title</label><br/> <input type="text" name="title"><br/>
-        <label>Year</label><br/> <input type="text" name="year"><br/>
-        <label> </label> <br/> <input type="submit" value="Post Form">
-    </form>
-    <br/>
-    <h2>Enter Json for Object "Movie" here:</h2>
-    <h3>Example: { "title": "Pulp Fiction", "year": 1992 }</h3>
-    <form method="post" action="movie/add/postJson">
-        Json<br/> <input type="text" name="json" width="400"/> <br> <br/>
-        <input type="submit" value="Post Json">
-    </form>
-    <br>
-    <a href="movie/list">Show all movies</a>
-    <br>
-    <br>
-    DevOps Tools shipped with Quarkus Extension
-    <br>
-    <a href="q/swagger-ui">Show Swagger-UI</a>
-    <br>
-    <a href="q/metrics/application">Show Metrics</a>
-    <br>
-    <a href="q/health">Show Probe</a>
+<div align="left" style="margin-top: 10%;">
+    <fieldset style="border: none;">
+        <legend><strong>Messages List</strong></legend>
+
+        <!-- table to show data -->
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </fieldset>
 </div>
+
 </body>
 </html>

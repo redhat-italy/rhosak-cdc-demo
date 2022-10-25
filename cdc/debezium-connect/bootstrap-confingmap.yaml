@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: rhosak-kafka
+  namespace: rh-summit-connect
+immutable: false
+data:
+  bootstap-server: 'rh-summit-cdbcno-om-e-i---m-dg.bf2.kafka.rhcloud.com:443'

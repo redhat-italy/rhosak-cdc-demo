@@ -5,14 +5,6 @@ Helm chart to deploy a debezium KafkaConnect connected to postgresql to emitt da
 ## Prerequisite
 In ocp cluster install the operator `Red Hat Integration - AMQ Streams`
 
-### RHSOAK
-Go to cloud.redhat.com and create a new Kafka Instances  
-alternative you can use the [rohas cli](https://github.com/redhat-developer/app-services-cli)
-```shell script
-rhoas kafka create --name cdc-demo
-rhoas context set-kafka --name cdc-demo
-```
-
 Create a service account and give the grant necessary to use the kafka instance
 ```shell script
 rhoas service-account create --short-description cdc-demo-sa --file-format secret --output-file debezium-sa.yaml
@@ -21,7 +13,7 @@ rhoas kafka acl grant-access --consumer --producer --service-account <CLIENT-ID>
 ```
 
 Now you need to get the Bootstap server URL, Client ID and modify the file [values.yaml](debezium-connect/values.yaml)       
-Client ID and Client Secret could be obtained from file credentials.yaml created by command 'rhoas service-account create'   
+Client ID could be obtained from file debezium-sa.yaml created by command 'rhoas service-account create'   
 Bootstrap server could be obtained using below command
 ```shell script
 rhoas kafka describe --name cdc |grep bootstrap
