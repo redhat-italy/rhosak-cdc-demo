@@ -1,0 +1,25 @@
+{{ if .Values.connector.enabled }}
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  labels:
+    strimzi.io/cluster: debezium-kafka-connect-cluster
+    {{- include "debezium-connect.labels" . | nindent 4 }}
+  name: cdc-connector-postgres
+spec:
+  class: io.debezium.connector.postgresql.PostgresConnector
+  tasksMax: 1
+  config:
+    database.server.name: "{{ .Values.connector.database }}"
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    transforms: unwrap
+    transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    topic.creation.default.replication.factor: -1
+    topic.creation.default.partitions: -1
+    {{- range $key, $val := .Values.connector.config }}
+    {{ $key }}: {{ $val | quote }}
+    {{- end }}
+{{ end }}

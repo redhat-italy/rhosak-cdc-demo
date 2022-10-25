@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Red Hat">
+  <title>Tree Of Taste</title>
+
+  <!-- Bootstrap core CSS -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    crossorigin="anonymous">
+
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="logo.png" alt="" height="150">
+        <h2>Tree Of Taste</h2>
+        <p class="lead">
+          Order placement
+        </p>
+      </div>
+
+      <div class="row g-5">
+
+        <div class="col">
+          <h4 class="mb-3">Place an order</h4>
+          <form id="requestorder" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col">
+                <label for="ordertype" class="form-label">Order type</label>
+                <select class="form-control" id="ordertype" required>
+                  <option>fruits</option>
+                  <option>vegetable</option>
+                  <option>fish</option>
+                  <option>meat</option>
+                </select>
+                <div class="invalid-feedback">
+                  Order type is required
+                </div>
+                <div class="invalid-feedback">
+                  Order type is required
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="ordersize" class="form-label">Order size</label>
+                <select class="form-control" id="ordersize" required>
+                  <option>small</option>
+                  <option>medium</option>
+                  <option>large</option>
+                </select>
+                <div class="invalid-feedback">
+                  Order size is required
+                </div>
+                <div class="invalid-feedback">
+                  Order size is required
+                </div>
+              </div>
+
+              <div class="col">
+                <label for="delivery" class="form-label">Delivery Type</label>
+                <select class="form-control" id="delivery" required>
+                  <option>shipment</option>
+                  <option>pickup</option>
+                </select>
+                <div class="invalid-feedback">
+                  Delivery Type is required
+                </div>
+                <div class="invalid-feedback">
+                  Delivery Type is required
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <div class="my-3">
+              <div id="requestresult" class="collapse">
+                <div id="result message" class="card" style="width: 100%;">
+                  <div class="card-body">
+                    <h5 class="card-title">Order Placment Result</h5>
+                    <h6 id="card-result-subtitle-text" class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p id="card-result-text" class="card-text">Some quick example text to build on the card title and
+                      make up the bulk of the
+                      card's content.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Send Order</button>
+
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2017-2022 Company Name</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="form-validation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    var ORDERENTRYAPIURL = "<%=ORDERENTRYAPIURL%>";
+    $(document).ready(function () {
+        $("#requestorder").submit(function () {
+            if ($("#requestorder").hasClass('has-errors')) {
+                console.log("form has errors")
+                return;
+            }
+            event.preventDefault();
+            var reqJson =
+                '{' +
+                '  "type": "' + $('#ordertype').val() + '",' +
+                '  "size": "' + $('#ordersize').val() + '",' +
+                '  "delivery": "' + $('#delivery').val() + '"' +
+                '}';
+            console.log(reqJson)
+            $.ajax({
+                type: "POST",
+                url: ORDERENTRYAPIURL + "/order/add",
+                contentType: 'application/json',
+                async: false,
+                data: reqJson,
+                /*
+                success: function (data) {
+                    if (data.hasOwnProperty("error") && data.error != null && data.error.length > 0) {
+                        $("#card-result-subtitle-text")[0].firstChild.textContent = "Errore";
+                        $("#card-result-text")[0].firstChild.textContent = "Attenzione errore: " + data.error;
+                        $("#requestresult").collapse("show");
+                    } else {
+                        $("#card-result-subtitle-text")[0].firstChild.textContent = "Result: " + data;
+                        $("#card-result-text")[0].firstChild.textContent = "Requested Type [" + $('#ordertype').val() + "] Size [" + $('#ordersize').val() + "]";
+                        $("#requestresult").collapse("show");
+                    }
+                }
+                */
+            })
+            .done(function (data, textStatus, jqXHR) {
+                $("#card-result-subtitle-text")[0].firstChild.textContent = "Result: " + data;
+                $("#card-result-text")[0].firstChild.textContent = "Requested Type [" + $('#ordertype').val() + "] Size [" + $('#ordersize').val() + "] Delivery Type ["+$('#delivery').val()+"]";
+                $("#requestresult").collapse("show");
+                // Process data, as received in data parameter
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                $("#card-result-subtitle-text")[0].firstChild.textContent = "Error";
+                $("#card-result-text")[0].firstChild.textContent = "Origin: " + errorThrown;
+                $("#requestresult").collapse("show");
+            })
+        });//Close submit function
+    });//Close ready function
+  </script>
+</body>
+</html>

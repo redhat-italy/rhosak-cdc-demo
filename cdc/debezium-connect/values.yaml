@@ -1,0 +1,31 @@
+postgresql:
+  name: cdc-order
+  username: dbuser
+  password: dbpassword
+  adminpassword: dbpassword
+
+connect:
+  name: debezium-kafka-connect-cluster
+  version: '3.2.3'
+
+  bootstrapServers: 
+    - rh-summit-cdbcno-om-e-i---m-dg.bf2.kafka.rhcloud.com:443
+
+  configPrefix: cdc
+
+  authentication:
+    username: 35a09ea4-4508-44bc-9626-db9eb538e5f8
+    #password: RlWi6zSbZhtI0j1rYgMzqf2wXSueTUx3
+
+
+connector:
+  enabled: True
+  tasksMax: 1
+  database: cdc
+  config:
+    database.dbname: cdc-order
+    database.hostname: postgresql
+    database.password: dbpassword
+    database.port: 5432
+    database.user: postgres
+    plugin.name: pgoutput

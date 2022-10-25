@@ -1,0 +1,52 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: debezium-kafka-connect-cluster
+  annotations:
+    strimzi.io/use-connector-resources: "true"
+  labels:
+    {{- include "debezium-connect.labels" . | nindent 4 }}
+spec:
+  version: '{{ .Values.connect.version }}'
+  build:
+    output:
+      type: imagestream
+      image: debezium-streams-connect:latest
+    plugins:
+      - name: debezium-connector-postgres
+        artifacts:
+          - type: zip
+            url: >-
+              https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-postgres/1.9.5.Final-redhat-00001/debezium-connector-postgres-1.9.5.Final-redhat-00001-plugin.zip
+
+  bootstrapServers: {{ include "debezium-connect.bootstrapServers" . }}
+
+  tls:
+    trustedCertificates: []
+
+
+  authentication:
+    type: plain
+    username: {{ .Values.connect.authentication.username }}
+    passwordSecret:
+      password: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET
+      secretName: debezium-account-credentials
+
+
+#  authentication:
+#    type: plain
+#    username: {{ .Values.connect.authentication.username }}
+#    passwordSecret:
+#      password: client-secret
+#      secretName: rhosak-secret
+
+  config:
+    group.id: {{ .Values.connect.configPrefix }}-connect-cluster
+    offset.storage.topic: {{ .Values.connect.configPrefix }}.connect.cluster-offsets
+    config.storage.topic: {{ .Values.connect.configPrefix }}.connect.cluster-configs
+    status.storage.topic: {{ .Values.connect.configPrefix }}.connect.cluster-status
+    config.storage.replication.factor: -1
+    offset.storage.replication.factor: -1
+    status.storage.replication.factor: -1
+
+  replicas: 1

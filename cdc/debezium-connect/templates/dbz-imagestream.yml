@@ -1,0 +1,9 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  labels:
+    {{- include "debezium-connect.labels" . | nindent 4 }}
+  name: debezium-streams-connect
+spec:
+  lookupPolicy:
+    local: false
