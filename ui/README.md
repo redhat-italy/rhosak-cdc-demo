@@ -12,9 +12,6 @@ node app.js
 
 # OCP setup
 To test this sub project on ocp:
-
-
-
 ```
 oc new-build --image-stream=openshift/nodejs:latest --name=ui --binary=true
 oc start-build ui --from-dir=ui 

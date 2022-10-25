@@ -20,7 +20,7 @@ rhoas kafka acl grant-access --consumer --producer --service-account <CLIENT-ID>
 (rhoas kafka acl grant-access --consumer --producer --service-account cec9e5f3-fbc3-4e21-a9d2-5840ab3605a9 --topic all --group all)
 ```
 
-Now you need to get the Bootstap server URL, Client ID and Client Secret and modify the file [values.yaml](debezium-connect/values.yaml)       
+Now you need to get the Bootstap server URL, Client ID and modify the file [values.yaml](debezium-connect/values.yaml)       
 Client ID and Client Secret could be obtained from file credentials.yaml created by command 'rhoas service-account create'   
 Bootstrap server could be obtained using below command
 ```shell script
@@ -29,8 +29,9 @@ rhoas kafka describe --name cdc |grep bootstrap
 
 ## Installation
 
-Once you have copied this info into [value.yaml](debezium-connect/values.yaml) you can use `helm` to instantiate debezium objects
+Once you have copied the info into [value.yaml](debezium-connect/values.yaml) you can use `helm` to instantiate debezium objects
 ```shell script
+oc apply -f debezium-sa.yaml
 helm install cdc ./debezium-connect
 ```
 
