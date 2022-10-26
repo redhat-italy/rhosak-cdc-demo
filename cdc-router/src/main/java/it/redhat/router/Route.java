@@ -17,11 +17,11 @@ public class Route extends RouteBuilder {
 
         .choice()
         .when(body().contains("pickup"))
-            .log("Delivery type pickup send to topci {{kafka.sync-pickup.topic.name}}")
-            .to("kafka:{{kafka.sync-pickup.topic.name}}")
+            .log("Delivery type pickup send to topci {{kafka.sink-pickup.topic.name}}")
+            .to("kafka:{{kafka.sink-pickup.topic.name}}")
         .when(body().contains("shipment"))
-            .log("Delivery type shipment send to topic {{kafka.sync-shipment.topic.name}}")
-            .to("kafka:{{kafka.sync-shipment.topic.name}}")
+            .log("Delivery type shipment send to topic {{kafka.sink-shipment.topic.name}}")
+            .to("kafka:{{kafka.sink-shipment.topic.name}}")
         .otherwise()
             .log("Not Found");
 

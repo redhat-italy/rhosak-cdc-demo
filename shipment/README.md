@@ -7,7 +7,8 @@ You must have configured a Red Hat Openshift Streams for Apache Kafka
 ### Service Account
 Create service account
 ```
-rhoas service-account create --short-description shipment-sa --file-format env --output-file shipment-sa.env
+rhoas service-account create --short-description shipment-sa --file-format env --output-file /tmp/shipment-sa.env
+cat /tmp/shipment-sa.env
 ```
 
 Give the right acl
@@ -16,7 +17,7 @@ rhoas kafka acl grant-access --consumer --service-account <CLIENT-ID>  --topic s
 ```
 - Sample
 ```
-rhoas kafka acl grant-access --consumer --service-account 445fb6cb-748e-4c16-865f-d895085a333c  --topic shipment --group shipment
+rhoas kafka acl grant-access --consumer --service-account 7752b2a1-8d07-45e6-ade2-b1e72f84694a  --topic shipment --group shipment
 
 ```
 
@@ -27,16 +28,14 @@ Client ID and Client Secret could be obtained from file shipment-sa.env created 
 First Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
-mkdir target/ocp && cp -R target/*-runner.jar target/ocp
 oc new-build --name=shipment --binary=true -i=java:openjdk-11-ubi8
-oc start-build shipment --from-dir=target/ocp --follow
+oc start-build shipment --from-file=target/shipment-1.0.0-SNAPSHOT-runner.jar --follow
 oc new-app shipment -e topic.sink.name=shipment
 mvn clean
 ```
 Re-Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
-mkdir target/ocp && cp -R target/*-runner.jar target/ocp
-oc start-build shipment --from-dir=target/ocp --follow
+oc start-build shipment --from-file=target/shipment-1.0.0-SNAPSHOT-runner.jar --follow
 mvn clean
 ```

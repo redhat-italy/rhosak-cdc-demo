@@ -15,6 +15,7 @@ import java.util.List;
 
 
 @ApplicationScoped
+@Path("/messages")
 public class KafkaConsumer {
 
     private final Logger logger = Logger.getLogger(KafkaConsumer.class);
@@ -35,6 +36,7 @@ public class KafkaConsumer {
     public Response getAll() {
         Jsonb jsonb = JsonbBuilder.create();
         String result = jsonb.toJson(messages);
+        messages.clear();
         return Response.status(Response.Status.OK).entity(result).build();
     }
 }

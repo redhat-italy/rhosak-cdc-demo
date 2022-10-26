@@ -15,7 +15,8 @@ rhoas kafka topic create --name pickup
 ## Service Account
 Create service account
 ```
-rhoas service-account create --short-description router-sa --file-format env --output-file router-sa.env
+rhoas service-account create --short-description router-sa --file-format env --output-file /tmp/router-sa.env
+cat /tmp/router-sa.env
 ```
 
 Give the right acl
@@ -26,9 +27,9 @@ rhoas kafka acl grant-access --consumer --service-account <CLIENT-ID>  --topic c
 ```
 - Sample
 ```
-rhoas kafka acl grant-access --producer --service-account 95de081c-a007-407c-bb0d-d12d1edd7f04  --topic shipment
-rhoas kafka acl grant-access --producer --service-account 95de081c-a007-407c-bb0d-d12d1edd7f04  --topic pickup
-rhoas kafka acl grant-access --consumer --service-account 95de081c-a007-407c-bb0d-d12d1edd7f04  --topic cdc.public.orders --group router
+rhoas kafka acl grant-access --producer --service-account 5470b9ae-b472-4674-8084-0511b4f6528a  --topic shipment
+rhoas kafka acl grant-access --producer --service-account 5470b9ae-b472-4674-8084-0511b4f6528a  --topic pickup
+rhoas kafka acl grant-access --consumer --service-account 5470b9ae-b472-4674-8084-0511b4f6528a  --topic cdc.public.orders --group router
 ```
 
 Now you need to get the Bootstap server URL, Client ID and Client Secret then modify the file [application.properties](src/main/resources/application.properties)       
@@ -39,16 +40,12 @@ Client ID and Client Secret could be obtained from file router-sa.env created by
 First Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
-mkdir target/ocp && cp -R target/*-runner.jar target/ocp
 oc new-build --name=cdc-router --binary=true -i=java:openjdk-11-ubi8
-oc start-build cdc-router --from-dir=target/ocp --follow
+oc start-build cdc-router --from-file=target/cdc-router-1.0.0-SNAPSHOT-runner.jar --follow
 oc new-app cdc-router
-mvn clean
 ```
 Re-Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
-mkdir target/ocp && cp -R target/*-runner.jar target/ocp
-oc start-build cdc-router --from-dir=target/ocp --follow
-mvn clean
+oc start-build cdc-router --from-file=target/cdc-router-1.0.0-SNAPSHOT-runner.jar --follow
 ```

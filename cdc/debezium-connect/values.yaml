@@ -1,20 +1,15 @@
-postgresql:
-  name: cdc-order
-  username: dbuser
-  password: dbpassword
-  adminpassword: dbpassword
-
 connect:
-  name: debezium-kafka-connect-cluster
+  name: debezium-rhosak-connect-cluster
   version: '3.2.3'
 
   bootstrapServers: 
-    - <<Bootstap server URL>>
+    - rh-summit-cdcjli-j-icd-sb-es-a.bf2.kafka.rhcloud.com:443
 
   configPrefix: cdc
 
   authentication:
-    username: <<Client ID>>
+    username: 00067379-19b3-4b86-a79e-a49a62fe871a
+    password: n0ryobDMSB8O8OgOdKvebqCd50s2NjQs
 
 connector:
   enabled: True

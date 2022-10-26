@@ -28,8 +28,8 @@ spec:
     type: plain
     username: {{ .Values.connect.authentication.username }}
     passwordSecret:
-      password: RHOAS_SERVICE_ACCOUNT_CLIENT_SECRET
-      secretName: debezium-account-credentials
+      password: client-secret
+      secretName: rhosak-secret
 
   config:
     group.id: {{ .Values.connect.configPrefix }}-connect-cluster

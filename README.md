@@ -23,8 +23,7 @@ oc project rhosak-cdc-demo
 ```
 
 Follow the README in order to create the infrastructure
-- [CDC](cdc/README.md)
 - [Order-Entry](orderEntry/README.md)
-- [UI](ui/README.md)
-- [Router](router/README.md)
+- [CDC](cdc/README.md)
+- [Router](cdc-router/README.md)
 - [Shipment](shipment/README.md)

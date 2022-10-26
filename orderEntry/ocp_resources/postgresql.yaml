@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  labels:
+    app.kubernetes.io/name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: postgresql
+        app: postgresql
+    spec:
+      containers:
+        - name: postgres
+          image: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:12-el8
+          command: ["run-postgresql", "-c", "wal_level=logical"]
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 512Mi
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRESQL_USER
+              value: dbuser
+            - name: POSTGRESQL_PASSWORD
+              value: dbpassword
+            - name: POSTGRESQL_DATABASE
+              value: cdc-order
+            - name: POSTGRESQL_ADMIN_PASSWORD
+              value: dbpassword
+            - name: PGPASSWORD
+              value: dbpassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+spec:
+  ports:
+    - name: postgresql
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    name: postgresql
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
