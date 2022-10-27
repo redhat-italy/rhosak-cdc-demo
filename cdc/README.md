@@ -18,17 +18,16 @@ Client ID could be obtained from file `debezium-sa.env` created by command `rhoa
 Change the secret name in `debazium-sa.yaml` with value `debezium-account-credential`   
 Bootstrap server could be obtained using below command   
 ```shell script
-rhoas kafka describe --name cdc |grep bootstrap
+rhoas kafka describe |grep bootstrap
 ```
 
 ## Installation
-
 Once you have copied the info into [value.yaml](debezium-connect/values.yaml) you can use `helm` to instantiate debezium objects
 ```shell script
 helm install rhosak-cdc ./debezium-connect
 ```
 
-upgrade
+Upgrade
 ```shell script
 helm upgrade rhosak-cdc ./debezium-connect
 ```
@@ -36,13 +35,19 @@ helm upgrade rhosak-cdc ./debezium-connect
 ## Manage Connector
 
 ### Restart a Connector
-
 ```shell
 oc annotate KafkaConnector cdc-connector-postgres strimzi.io/restart=true
 ```
 
 ### Restart a Connector Task
-
 ```shell
 oc annotate KafkaConnector cdc-connector-postgres strimzi.io/restart-task=0
 ```
+
+
+---
+*Utility*
+```shell
+helm install rhosak-cdc ./debezium-connect --values ./debezium-connect/values_rhosak.yaml
+helm upgrade rhosak-cdc ./debezium-connect --values ./debezium-connect/values_rhosak.yaml
+ ```

@@ -3,13 +3,13 @@ connect:
   version: '3.2.3'
 
   bootstrapServers: 
-    - rh-summit-cdcjli-j-icd-sb-es-a.bf2.kafka.rhcloud.com:443
+    - <<BOOTSTAP_SERVER_URL>>
 
   configPrefix: cdc
 
   authentication:
-    username: 00067379-19b3-4b86-a79e-a49a62fe871a
-    password: n0ryobDMSB8O8OgOdKvebqCd50s2NjQs
+    username: <<CLIENT_ID>>
+    password: <<CLIENT_SECRET>>
 
 connector:
   enabled: True

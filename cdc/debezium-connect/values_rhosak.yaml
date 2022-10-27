@@ -1,0 +1,7 @@
+connect:
+  bootstrapServers:
+    - rh-summit-cdcjli-j-icd-sb-es-a.bf2.kafka.rhcloud.com:443
+
+  authentication:
+    username: 00067379-19b3-4b86-a79e-a49a62fe871a
+    password: n0ryobDMSB8O8OgOdKvebqCd50s2NjQs

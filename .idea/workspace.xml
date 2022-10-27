@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86ebf5fd-0727-4e87-957d-242ff00712df" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cdc/debezium-connect/values_rhosak.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc-router/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cdc-router/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc-router/src/main/java/it/redhat/router/Route.java" beforeDir="false" afterPath="$PROJECT_DIR$/cdc-router/src/main/java/it/redhat/router/Route.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc-router/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cdc-router/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/templates/dbz-connect.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/templates/dbz-connect.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/diagram.png" beforeDir="false" afterPath="$PROJECT_DIR$/diagram.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orderEntry/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/orderEntry/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orderEntry/src/main/resources/META-INF/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/orderEntry/src/main/resources/META-INF/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

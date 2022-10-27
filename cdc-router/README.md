@@ -43,6 +43,12 @@ rhoas kafka acl grant-access --consumer --service-account 5470b9ae-b472-4674-808
 Now you need to get the Bootstap server URL, Client ID and Client Secret then modify the file [application.properties](src/main/resources/application.properties)       
 Client ID and Client Secret could be obtained from file router-sa.env created by command 'rhoas service-account create'
 
+```
+rhosak.bootstrap.servers=Bootstap server URL
+rhosak.client.id=Client ID
+rhosak.client.secret=Client Secret
+```
+
 ## Run Application Locally
 ```shell
 mvn compile quarkus:dev
