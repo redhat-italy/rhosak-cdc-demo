@@ -28,3 +28,21 @@ Once you have copied the info into [value.yaml](debezium-connect/values.yaml) yo
 helm install rhosak-cdc ./debezium-connect
 ```
 
+upgrade
+```shell script
+helm upgrade rhosak-cdc ./debezium-connect
+```
+
+## Manage Connector
+
+### Restart a Connector
+
+```shell
+oc annotate KafkaConnector cdc-connector-postgres strimzi.io/restart=true
+```
+
+### Restart a Connector Task
+
+```shell
+oc annotate KafkaConnector cdc-connector-postgres strimzi.io/restart-task=0
+```

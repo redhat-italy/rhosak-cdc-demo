@@ -25,7 +25,7 @@ Now you need to get the Bootstap server URL, Client ID and Client Secret then mo
 Client ID and Client Secret could be obtained from file shipment-sa.env created by command 'rhoas service-account create'
 
 ## Packaging and deploy the application
-First Build
+### First Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
 oc new-build --name=shipment --binary=true -i=java:openjdk-11-ubi8
@@ -33,7 +33,7 @@ oc start-build shipment --from-file=target/shipment-1.0.0-SNAPSHOT-runner.jar --
 oc new-app shipment -e topic.sink.name=shipment
 mvn clean
 ```
-Re-Build
+### Re-Build
 ```shell script
 mvn clean package -Dquarkus.package.type=uber-jar
 oc start-build shipment --from-file=target/shipment-1.0.0-SNAPSHOT-runner.jar --follow

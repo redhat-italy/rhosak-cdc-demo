@@ -18,6 +18,10 @@ spec:
           - type: zip
             url: >-
               https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-postgres/1.9.5.Final-redhat-00001/debezium-connector-postgres-1.9.5.Final-redhat-00001-plugin.zip
+  logging:
+    type: inline
+    loggers:
+      connect.root.logger.level: "INFO"
 
   bootstrapServers: {{ include "debezium-connect.bootstrapServers" . }}
 

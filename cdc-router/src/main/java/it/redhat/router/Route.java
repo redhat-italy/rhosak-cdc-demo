@@ -12,12 +12,12 @@ public class Route extends RouteBuilder {
     public void configure() throws Exception {
 
         from("kafka:{{kafka.source.topic.name}}")
-        .routeId("From.{{kafka.source.topic.name}}2Delivery")
+        .routeId("From.{{kafka.source.topic.name}}")
         .log("Received Message From: {{kafka.source.topic.name}}  ${body}")
 
         .choice()
         .when(body().contains("pickup"))
-            .log("Delivery type pickup send to topci {{kafka.sink-pickup.topic.name}}")
+            .log("Delivery type pickup send to topic {{kafka.sink-pickup.topic.name}}")
             .to("kafka:{{kafka.sink-pickup.topic.name}}")
         .when(body().contains("shipment"))
             .log("Delivery type shipment send to topic {{kafka.sink-shipment.topic.name}}")
