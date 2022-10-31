@@ -2,7 +2,9 @@
 
 Helm chart to deploy a debezium KafkaConnect connected to postgresql to emitt database changes on Red Hat Openshift Stream for Apache Kafa (RHOSAK)
 
-## Prerequisite
+![Diagram](diagram.png)
+
+## Pre Requisite
 In ocp cluster install the operator `Red Hat Integration - AMQ Streams`
 
 Create a service account and give the grant necessary to use the kafka instance

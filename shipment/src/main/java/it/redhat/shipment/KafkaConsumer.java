@@ -24,6 +24,7 @@ public class KafkaConsumer {
 
     @Incoming("channel-in")
     public void receive(String record) {
+        System.out.println("Message+"+record);
         messages.add(record);
         logger.infof("Rececived Message from Kafka: %s", record);
     }

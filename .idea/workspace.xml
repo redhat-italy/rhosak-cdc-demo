@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86ebf5fd-0727-4e87-957d-242ff00712df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cdc/debezium-connect/values_rhosak.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc-router/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cdc-router/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cdc-router/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cdc-router/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cdc/debezium-connect/values_rhosak.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cdc/debezium-connect/values_rhosak.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/shipment/src/main/java/it/redhat/shipment/KafkaConsumer.java" afterDir="false" />
@@ -53,7 +51,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mauiroma/Work/RH/prj/Summit/rhoask-cdc-demo/orderEntry/src/main/resources/META-INF/resources",
+    "last_opened_file_path": "/Users/mauiroma/Work/RH/prj/Summit/rhosak-cdc-demo/pom.xml",
     "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
@@ -71,6 +69,19 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="it.redhat.router" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

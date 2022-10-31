@@ -1,5 +1,7 @@
 # Router
-This project uses Quarkus with camel extension in order to consume messages from Kafka Topic emitted by Debezium, implements content base routing to determinate the right topic to send the message
+This project uses Quarkus with camel extension in order to consume messages from Kafka Topic emitted by Debezium, implements content based routing to determinate the right topic to send the message
+
+![Diagram](diagram.png)
 
 ## Pre Requisite
 You must have configured a Red Hat Openshift Streams for Apache Kafka
@@ -11,8 +13,7 @@ rhoas kafka topic create --name shipment
 rhoas kafka topic create --name pickup
 ```
 
-
-## Service Account
+### Service Account
 Create service account   
 Service Account for this project will have this acl:
 

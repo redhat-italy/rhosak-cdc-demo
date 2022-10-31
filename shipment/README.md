@@ -17,8 +17,7 @@ rhoas kafka acl grant-access --consumer --service-account <CLIENT-ID>  --topic s
 ```
 - Sample
 ```shell
-rhoas kafka acl grant-access --consumer --service-account 7752b2a1-8d07-45e6-ade2-b1e72f84694a  --topic shipment --group shipment
-
+rhoas kafka acl grant-access --consumer --service-account 1c0d7c5e-cf35-42d5-b56a-eed455e0df5e  --topic shipment --group shipment
 ```
 
 Now you need to get the Bootstap server URL, Client ID and Client Secret then modify the file [application.properties](src/main/resources/application.properties)       

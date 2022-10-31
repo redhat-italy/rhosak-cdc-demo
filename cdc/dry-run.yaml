@@ -1,0 +1,154 @@
+NAME: rhosak-cdc
+LAST DEPLOYED: Fri Oct 28 21:24:53 2022
+NAMESPACE: default
+STATUS: pending-install
+REVISION: 1
+TEST SUITE: None
+USER-SUPPLIED VALUES:
+connect:
+  authentication:
+    password: VuUrKzNaTKqkuKVUGKIBjj8GmVGoPGMx
+    username: d9a53966-af70-41e4-a4e8-47aa9f0c62d1
+  bootstrapServers:
+  - rh-summit-cdd-p-e--ijauqg--f-g.bf2.kafka.rhcloud.com:443
+
+COMPUTED VALUES:
+connect:
+  authentication:
+    password: VuUrKzNaTKqkuKVUGKIBjj8GmVGoPGMx
+    username: d9a53966-af70-41e4-a4e8-47aa9f0c62d1
+  bootstrapServers:
+  - rh-summit-cdd-p-e--ijauqg--f-g.bf2.kafka.rhcloud.com:443
+  configPrefix: cdc
+  name: debezium-rhosak-connect-cluster
+  version: 3.2.3
+connector:
+  config:
+    database.dbname: cdc-order
+    database.hostname: postgresql
+    database.password: dbpassword
+    database.port: 5432
+    database.user: postgres
+    plugin.name: pgoutput
+  database: cdc
+  enabled: true
+  tasksMax: 1
+
+HOOKS:
+MANIFEST:
+---
+# Source: debezium-connect/templates/dbz-secrets.yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rhosak-secret
+  labels:
+    helm.sh/chart: debezium-connect-0.1.0
+    app.kubernetes.io/name: debezium-connect
+    app.kubernetes.io/instance: rhosak-cdc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  client-secret: VnVVckt6TmFUS3FrdUtWVUdLSUJqajhHbVZHb1BHTXg=
+---
+# Source: debezium-connect/templates/dbz-imagestream.yml
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  labels:
+    helm.sh/chart: debezium-connect-0.1.0
+    app.kubernetes.io/name: debezium-connect
+    app.kubernetes.io/instance: rhosak-cdc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  name: debezium-streams-connect
+spec:
+  lookupPolicy:
+    local: false
+---
+# Source: debezium-connect/templates/dbz-connect.yml
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: debezium-kafka-connect-cluster
+  annotations:
+    strimzi.io/use-connector-resources: "true"
+  labels:
+    helm.sh/chart: debezium-connect-0.1.0
+    app.kubernetes.io/name: debezium-connect
+    app.kubernetes.io/instance: rhosak-cdc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  version: '3.2.3'
+  build:
+    output:
+      type: imagestream
+      image: debezium-streams-connect:latest
+    plugins:
+      - name: debezium-connector-postgres
+        artifacts:
+          - type: zip
+            url: >-
+              https://maven.repository.redhat.com/ga/io/debezium/debezium-connector-postgres/1.9.5.Final-redhat-00001/debezium-connector-postgres-1.9.5.Final-redhat-00001-plugin.zip
+  logging:
+    type: inline
+    loggers:
+      connect.root.logger.level: "INFO"
+
+  bootstrapServers: "rh-summit-cdd-p-e--ijauqg--f-g.bf2.kafka.rhcloud.com:443"
+
+  tls:
+    trustedCertificates: []
+
+  authentication:
+    type: plain
+    username: d9a53966-af70-41e4-a4e8-47aa9f0c62d1
+    passwordSecret:
+      password: client-secret
+      secretName: rhosak-secret
+
+  config:
+    group.id: cdc-connect-cluster
+    offset.storage.topic: cdc.connect.cluster-offsets
+    config.storage.topic: cdc.connect.cluster-configs
+    status.storage.topic: cdc.connect.cluster-status
+    config.storage.replication.factor: -1
+    offset.storage.replication.factor: -1
+    status.storage.replication.factor: -1
+
+  replicas: 1
+---
+# Source: debezium-connect/templates/dbz-connector.yml
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  labels:
+    strimzi.io/cluster: debezium-kafka-connect-cluster
+    helm.sh/chart: debezium-connect-0.1.0
+    app.kubernetes.io/name: debezium-connect
+    app.kubernetes.io/instance: rhosak-cdc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  name: cdc-connector-postgres
+spec:
+  class: io.debezium.connector.postgresql.PostgresConnector
+  tasksMax: 1
+  config:
+    database.server.name: "cdc"
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: false
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    transforms: unwrap
+    transforms.unwrap.type: io.debezium.transforms.ExtractNewRecordState
+    topic.creation.default.replication.factor: -1
+    topic.creation.default.partitions: -1
+    database.dbname: "cdc-order"
+    database.hostname: "postgresql"
+    database.password: "dbpassword"
+    database.port: "5432"
+    database.user: "postgres"
+    plugin.name: "pgoutput"
+
