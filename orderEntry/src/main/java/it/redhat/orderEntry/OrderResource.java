@@ -27,6 +27,7 @@ public class OrderResource {
     public Response addJson(String json) {
         Order order = new Order();
         try {
+            logger.infof("Place new Order: %s", json);
             order = mapper.readValue(json, Order.class);
             orderRepository.persist(order);
             return Response.status(Response.Status.OK).entity("Order ["+order.getID()+"] registered").build();
