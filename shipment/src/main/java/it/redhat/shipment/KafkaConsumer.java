@@ -1,5 +1,5 @@
 package it.redhat.shipment;
-import io.smallrye.reactive.messaging.kafka.Record;
+
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.jboss.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
@@ -24,7 +24,6 @@ public class KafkaConsumer {
 
     @Incoming("channel-in")
     public void receive(String record) {
-        System.out.println("Message+"+record);
         messages.add(record);
         logger.infof("Rececived Message from Kafka: %s", record);
     }

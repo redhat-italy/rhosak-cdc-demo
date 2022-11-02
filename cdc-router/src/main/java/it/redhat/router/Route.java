@@ -1,11 +1,6 @@
 package it.redhat.router;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.kafka.KafkaConstants;
-import org.apache.camel.support.builder.Namespaces;
-import org.w3c.dom.NodeList;
-
-import java.net.ConnectException;
 
 public class Route extends RouteBuilder {
     @Override

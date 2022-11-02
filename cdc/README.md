@@ -29,10 +29,17 @@ Once you have copied the info into [value.yaml](debezium-connect/values.yaml) yo
 helm install rhosak-cdc ./debezium-connect
 ```
 
+Dry run, useful to verify the variable override
+```shell script
+helm template rhosak-cdc ./debezium-connect --values ./debezium-connect/values_rhosak.yaml --dry-run --debug
+```
+
 Upgrade
 ```shell script
 helm upgrade rhosak-cdc ./debezium-connect
 ```
+
+
 
 ## Manage Connector
 
